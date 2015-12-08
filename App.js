@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 class App extends Component { 
+  constructor() {
+    super();
+    this.state = {
+      txt: 'this is state text'
+    };
+  }
+  update (e) {
+    this.setState({
+      txt: e.target.value
+    });
+  }
   render() {
     let num = this.props.num;
-    let txt = this.props.txt;
+    let txt = this.state.txt;
     let result = txt + " " + num;
-    return <div>{result}</div>;
+    return (
+      <div>
+        <input type="text" onChange={this.update.bind(this)} />
+        <div>{result}</div>
+      </div>
+    );
   }
 } 
 
 App.propTypes = {
-  txt: React.PropTypes.string,
   num: React.PropTypes.number.isRequired
-};
-
-App.defaultProps = {
-  txt: 'Hey your number is'
 };
 
 export default App;
