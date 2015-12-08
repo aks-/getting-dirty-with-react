@@ -14,17 +14,19 @@ class App extends Component {
     });
   }
   componentWillMount() {
-    console.log('Mounting');
+    this.setState({
+      m: 3
+    });
   }
   componentDidMount() {
-    console.log('Mounted');
+    this.inc = setInterval(this.update, 500);
   }
   componentWillUnmount() {
-    console.log('Done some clean up, bye!');
+    clearInterval(this.inc);
   }
   render() {
     console.log('rendering');
-    return <button onClick={this.update}>{this.state.val}</button>
+    return <button onClick={this.update}>{this.state.val*this.state.m}</button>
   }
 } 
 
